@@ -1,7 +1,8 @@
 
 const initialState = {
     dogs : [],
-    temperamentos: []
+    temperament: [],
+    allDogsTemp: []
 }
 function rootReducer(state = initialState, action){
     switch(action.type){
@@ -12,18 +13,27 @@ function rootReducer(state = initialState, action){
                 dogs: action.payload
             }
         //2    
-            case 'GET_TEMPERAMENTO':
+            case 'GET_TEMPERAMENT':
                 return{
                     ...state,
-                    temperamentos:  action.payload // => temperamentosFiltered
+                    temperament:  action.payload,// => temperamentosFiltered
+                    allDogsTemp: action.payload
                 }
         //3
-        case 'FILTER_BY_TEMPERAMENTO':
-            const alldogs = state.dogs
-            const dogsFiltered = action.payload === 'All' ? alldogs : alldogs.filter(e => e.status === action.payload)
+        case 'FILTER_PERRITOS_BY_TEMPERAMENT':
+            const allTemperament = state.allDogsTemp
+            // const temperamentFiltered = action.payload === 'All' ? allTemperament : allTemperament.filter(e => e.status === action.payload)
+            let arr = [];
+            allTemperament.map(e =>{
+                if(e.temperament !== undefined){
+                    if(e.temperament.includes(action.payload)) {
+                        arr.push(e)
+                    }
+                }
+            })
             return{
                 ...state,
-                dogs: dogsFiltered
+                allDogsTemp: arr //temperamentFiltered
 
             }
 

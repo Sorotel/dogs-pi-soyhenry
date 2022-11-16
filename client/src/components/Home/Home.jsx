@@ -1,35 +1,39 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getPerritos, getTemperamentos,filterPerritosByTemperamento } from '../actions';
+import { getPerritos, getTemperament,filterPerritosByTemperament } from '../../actions';
 import { Link } from 'react-router-dom';
-import  Card  from './Card'
-import Paginado from './Paginado';
+import  Card  from '../Card/Card'
+import Paginado from '../Paginado/Paginado';
 
 export default function Home() {
     const dispatch = useDispatch()
     const allDogs = useSelector((state) => state.dogs);
+    const allTemperament = useSelector((state) => state.allDogsTemp);
    const [currentPage,setCurrentPage] =useState(1);
    const [perritosPerPage,setPerritosPerPage] =useState(8);
    const indexOfLastPerrito= currentPage * perritosPerPage; 
    const indexOfPrimerPerrito= indexOfLastPerrito - perritosPerPage;
    const currentPerritos = allDogs.slice(indexOfPrimerPerrito,indexOfLastPerrito) //con slice corto el array para obtener una porcion por parametro
-  
+  console.log(allDogs,'ACA TRAEME PERRITOS')
+  console.log(allTemperament,'ACA TRAEME TEMPERAMENTOS')
    const paginado = (pageNumber) =>{
     setCurrentPage(pageNumber);
    }
    
     useEffect(() => {
         dispatch(getPerritos());
+        dispatch(getTemperament());
     }, [dispatch])
 
     function handleClick(e) {
         e.preventDefault();
         dispatch(getPerritos());
     }
-
+    
     function handleFilterTemperament(e){
-        dispatch(filterPerritosByTemperamento)
+        dispatch(filterPerritosByTemperament(e.targuet.value))
+        setCurrentPage(1)
     }
    
 
@@ -44,11 +48,19 @@ export default function Home() {
                     <option value='asc'>Ascendente</option>
                     <option value='desc'>Descendente</option>
                 </select>
-                <select>
-                    <option>
-                    {getTemperamentos}                    
-                    </option>
-                </select>
+               
+                <select onChange={e =>handleFilterTemperament(e)} >
+                  <option value='all'>Temperamentos</option> 
+                { allTemperament.map((e,i)=>{
+                 return (
+                    <option key={i}> {e.name} </option>
+                 )}
+                  )
+              }   
+            </select>
+                     
+
+
                 <select>
                     <option value='All'>Todos</option>
                     <option value='created'>Creados</option>

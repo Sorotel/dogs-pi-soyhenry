@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import LandingPage from './components/LandingPage'
-import Home from './components/Home';
+import LandingPage from './components/LandingPage/LandingPage'
+import Home from './components/Home/Home';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route exact path= '/home' component={Home}/>
 
       </Switch>
-      <h1>Henry Dogs</h1>
+      <h1>A eso le llamas Perro?</h1>
     </div>
     </BrowserRouter>
   );

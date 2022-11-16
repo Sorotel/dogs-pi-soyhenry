@@ -12,21 +12,19 @@ export function getPerritos(){
     }
 }
 
-export function getTemperamentos(){
+export function getTemperament(){
     return async function(dispatch){
-        var json = await axios.get("https://localhost:3001/temperaments",{
-          
-        });
+        var json = await axios.get("http://localhost:3001/temperaments")
         return dispatch({
-            type: 'GET_TEMPERAMENTOS',
+            type: 'GET_TEMPERAMENT',
             payload: json.data,
         })
 }
 }
 
-export function filterPerritosByTemperamento(payload){
+export function filterPerritosByTemperament(payload){
     return{
-        type: 'FILTER_BY_TEMPERAMENTO',
+        type: 'FILTER_PERRITOS_BY_TEMPERAMENT',
         payload
     }
 }

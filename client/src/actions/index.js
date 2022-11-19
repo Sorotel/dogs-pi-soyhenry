@@ -12,9 +12,23 @@ export function getPerritos(){
     }
 }
 
+export function getNamePerritos(name){
+    return async function(dispatch){
+        try{
+            var json = await axios.get("http://localhost:3001/dogs?name=" + name);
+            return dispatch({
+                type: 'GET_NAME_PERRITOS',
+                payload: json.data,
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
 export  function getDogsDb(){
     return async function(dispatch){
-        var json = await axios ("http://localhost:3001/dogs")
+        var json = await axios.get("http://localhost:3001/dogs")
            
         return dispatch({            
             type: 'GET_DOGS_DB',
@@ -25,10 +39,10 @@ export  function getDogsDb(){
 
 export function getTemperament(){
     return async function(dispatch){
-        var json = await axios.get("http://localhost:3001/temperaments")
+        var info = await axios.get("http://localhost:3001/temperaments")
         return dispatch({
             type: 'GET_TEMPERAMENT',
-            payload: json.data,
+            payload: info.data,
         })
 }
 }
@@ -44,5 +58,20 @@ export function filterCreated(payload){
     return{
         type: 'FILTER_CREATED',
         payload
+    }
+}
+
+export function orderByName(payload){
+    return{
+        type: 'ORDER_BY_NAME',
+        payload
+    }
+}
+
+export function postPerrito(payload){
+    return async function(dispatch) {
+        const response = await axios.post("http://localhost:3001/dogs",payload)
+        console.log(response,' RESONSEAME ESTA')
+        return response;
     }
 }

@@ -6,7 +6,7 @@ const {Dog, Temperament} = require ('../db');
 
 const router = Router();
 
-const {dogTotalf,dogParams,createDog,} = require('../controllers/DogController');
+const {dogTotalf,dogParams,createDog,deleteDog,} = require('../controllers/DogController');
 const {tempGet} = require('../controllers/TemperamentController');
 const axios = require('axios');
 // Configurar los routers
@@ -14,8 +14,10 @@ const axios = require('axios');
 
 router.get('/dogs', dogTotalf);
 router.get('/dogs/:id', dogParams);
-router.get('/temperaments', tempGet);
+router.get('/temperament', tempGet);
 router.post('/dogs',createDog);
+
+router.delete('/id', deleteDog);
 
 
 module.exports = router;

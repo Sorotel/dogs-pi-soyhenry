@@ -5,7 +5,7 @@ const { Dog, Temperament } = require('../db');
 const tempGet = async (req, res) => {
     const tempApi = await axios.get(`https://api.thedogapi.com/v1/breeds`);
    let tempMap = tempApi.data.map(e=> e.temperament).toString();
-   tempMap = await tempMap.split(',')
+   tempMap = await tempMap.split(',');
    const tempAll = await tempMap.map(e=>{
     if(e[0] ==' '){
         return e.split('')

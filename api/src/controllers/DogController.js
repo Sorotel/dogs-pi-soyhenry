@@ -3,6 +3,8 @@ const { Dog, Temperament } = require('../db');
 
 
 //               --> Importo la Informacion de la Api a la DB <-- 
+
+
 const getApiInfo = async (req, res) => {
     const apiUrl = await axios.get('https://api.thedogapi.com/v1/breeds');
 
@@ -10,12 +12,12 @@ const getApiInfo = async (req, res) => {
         return {
             id: e.id,
             name: e.name,
-            weight_min: e.weight.metric.split(' - ')[0] && e.weight.metric.split(' - ')[0],
-            weight_max: e.weight.metric.split(' - ')[1] && e.weight.metric.split(' - ')[1],
-            height_min: e.height.metric.split(' - ')[0] && e.height.metric.split(' - ')[0],
-            height_max: e.height.metric.split(' - ')[1] && e.height.metric.split(' - ')[1],
-            life_min: e.life_span.split(' - ')[0] && e.life_span.split(' - ')[0],
-            life_max: e.life_span.split(' - ')[1] && e.life_span.split(' - ')[1],
+            weightMin: e.weight.metric.split(' - ')[0] && e.weight.metric.split(' - ')[0],
+            weightMax: e.weight.metric.split(' - ')[1] && e.weight.metric.split(' - ')[1],
+            heightMin: e.height.metric.split(' - ')[0] && e.height.metric.split(' - ')[0],
+            heightMax: e.height.metric.split(' - ')[1] && e.height.metric.split(' - ')[1],
+            lifeMin: e.life_span.split(' - ')[0] && e.life_span.split(' - ')[0],
+            lifeMax: e.life_span.split(' - ')[1] && e.life_span.split(' - ')[1],
             image: e.image.url,
             temperament: e.temperament,
         }
@@ -29,16 +31,14 @@ const getDbInfo = async () => {
         include: {
             model: Temperament,
             attributes: ['name'],
-            throught: {
-                attributes: [],
-            },
+            throught: { attributes: [], },
         }
     });
 };
 const getAllDogs = async () => {
     const apiInfo = await getApiInfo();
-    const DbInfo = await getDbInfo();
-    const infoTotal = apiInfo.concat(DbInfo);
+    const dbInfo = await getDbInfo();
+    const infoTotal = apiInfo.concat(dbInfo);
     return infoTotal;
 };
 const dogTotalf = async (req, res) => {
@@ -87,25 +87,34 @@ const tempGet = async (req, res) => {
 const createDog = async (req, res) => {
     const {
         name,
-        weight_min,
-        weight_max,
-        height_min,
-        height_max,
-        life_min,
-        life_max,
+        weightMin,
+        weightMax,
+        heightMin,
+        heightMax,
+        lifeMin,
+        lifeMax,
         image,
         temperament,
+        createdInDb,
 
-    } = req.body
+    } = req.body;
+    
+    if (!name || !weightMin || !weightMax || !heightMin || !heightMax || !lifeMin || !lifeMax || !image) {
+        return res.status(400).send("Bad Request");
+      }
+      if (temperament?.length === 0)
+        return res.json({ error: "Temperaments is required" });
+
     const perrito = {
         name,
-        weight_min,
-        weight_max,
-        height_min,
-        height_max,
-        life_min,
-        life_max,
-        image,
+        weightMin,
+        weightMax,
+        heightMin,
+        heightMax,
+        lifeMin,
+        lifeMax,
+        image: image ? image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUrfzO18R6MVAALwOE1qJFv5GfXaTa2mLqlA&usqp=CAU' ,
+        createdInDb,
     }
     try {
         const dogCreated = await Dog.create(perrito);
@@ -118,9 +127,23 @@ const createDog = async (req, res) => {
         console.log(error)
     }
 };
+
+const deleteDog = async(req, res)=>{
+    try{
+        let {id} = req.params;
+        await Dog.destroy({
+            where: {id}
+        })
+        res.status(201).send('Raza eliminada')
+    }catch{
+        res.status(400).send('El perro que buscas no existe en los regstros')
+    }
+    };
+
 module.exports = {
     dogTotalf,
     dogParams,
 
     createDog,
+    deleteDog,
 };

@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import LandingPage from './components/LandingPage/LandingPage'
 import Home from './components/Home/Home';
 import PerrosCreate from './components/PerrosCreate/PerrosCreate';
-import Detalle from './components/Detalle/Detalle';
+import Detail from './components/Detail/Detail';
 
 function App() {
   return (
@@ -12,10 +12,10 @@ function App() {
       <Switch>
         <Route exact path= '/' component={LandingPage}/>
         <Route path= '/home' component={Home}/>
-        <Route path= '/dogs' component={PerrosCreate}/>
-        <Route path= '/home/:id' component={Detalle}/>
+        <Route path= '/create' component={PerrosCreate}/>
+        <Route exact path= '/dogs/:id' render={({match})=><Detail id={match.params.id}/>}/>
       </Switch>
-      <h1>A eso le llamas Perro?</h1>
+      <h7>A eso le llamas Perro?</h7>
     </div>
     </BrowserRouter>
   );

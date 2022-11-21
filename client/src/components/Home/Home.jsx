@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getPerritos,getDogsDb, getTemperament,filterPerritosByTemperament,filterCreated,orderByName } from '../../actions';
+import { getPerritos, getTemperament,filterPerritosByTemperament,filterCreated,orderByName,orderByWeight } from '../../actions';
 import { Link } from 'react-router-dom';
 import  Card  from '../Card/Card'
 import Paginado from '../Paginado/Paginado';
@@ -11,7 +11,7 @@ import SearchBar from "../SearchBar/SearchBar";
 export default function Home() {
     const dispatch = useDispatch()
     const allDogs = useSelector((state) => state.dogs);
-    const allDogsDb = useSelector((state) => state.dogs);
+    
     const allTemperament = useSelector((state) => state.temperament);
 
    const [orden, setOrden] = useState(''); 
@@ -20,14 +20,13 @@ export default function Home() {
    const indexOfLastPerrito= currentPage * perritosPerPage; 
    const indexOfPrimerPerrito= indexOfLastPerrito - perritosPerPage;
    const currentPerritos = allDogs.slice(indexOfPrimerPerrito,indexOfLastPerrito) //con slice corto el array para obtener una porcion por parametro 
-   const currentPerritosDb = allDogsDb.slice(indexOfPrimerPerrito,indexOfLastPerrito)
+
 
   
   
 
   useEffect(() => {
       dispatch(getPerritos());
-      dispatch(getDogsDb());
       dispatch(getTemperament());
   }, [dispatch])
 
@@ -54,6 +53,7 @@ export default function Home() {
     };
    
     function handleFilterCreated(e){
+        e.preventDefault();
         dispatch(filterCreated(e.target.value)); 
     };
 
@@ -61,12 +61,19 @@ export default function Home() {
         e.preventDefault();
         dispatch(orderByName(e.target.value));
         setCurrentPage(1);
-        setOrden(`Ordenado ${e.targuet.value}`);
+        setOrden("Ordenado ${e.targuet.value}");
+    };
+
+    function handleOrderByWeight(e){
+        e.preventDefault();
+        dispatch(orderByWeight(e.target.value));
+        setCurrentPage(1);
+        setOrden("Ordenado ${e.targuet.value}");
     };
 
     return (
         <div>
-            <Link to='/dogs'>Crear Perro</Link>
+            <Link to='/create'>Crear Perro</Link>
             <h1>Pero que grande estan los Peshooos cheeeeee</h1>
 
             <button onClick={(e) => { handleClick(e) }}>
@@ -79,9 +86,15 @@ export default function Home() {
                     <option value='asc'>Ascendente</option>
                     <option value='desc'>Descendente</option>
                 </select>
+
+                <select onChange={(e) => handleOrderByWeight(e)}>
+                <option defaultValue='all'>Orden Por Peso</option>
+                    <option value='asc'>Ascendente</option>
+                    <option value='desc'>Descendente</option>
+                </select>
                
                 <select onChange={(e) =>handleFilterTemperament(e)} >
-                  <option value='all'>Temperamentos</option> 
+                  <option defaultValue='all'>Temperamentos</option> 
                 { allTemperament.map((e,i)=>{
                     return (
                         <option key={i}>{e}</option>
@@ -91,14 +104,13 @@ export default function Home() {
             </select>
     
                 <select onChange={(e) =>handleFilterCreated(e)}>
-                    <option value='All'>Todos</option>
+                    <option defaultValue='All'>Todos</option>
                     <option value='created'>Creados</option>
                     <option value='api'>Existente</option>
                 </select>
     <Paginado
         perritosPerPage={perritosPerPage}
         allDogs={allDogs.length}
-        allDogsDb={allDogsDb.length}
         paginado={paginado}
         />
 
@@ -107,8 +119,15 @@ export default function Home() {
 {currentPerritos?.map((e) => {
          return (
     <fragment className='cartas'>
-        <Link to={"/home/" + e.id}>
-    <Card name={e.name} image={e.image.url} temperament={e.temperament} weight={e.weight.metric} id={e.id} />
+        <Link to={"/dogs/" + e.id}>
+    <Card 
+    name={e.name}
+    image={e.image}
+    temperament={e.temperament}
+    temperaments={e.temperaments?.map((temp)=>temp.name).join(", ")}
+    weightMin={e.weightMin}
+    weightMax={e.weightMax}
+     />
         </Link>
     </fragment>
 
@@ -116,17 +135,7 @@ export default function Home() {
                     })
                 }
 
-{/* {currentPerritosDb?.map(e => {
-         return (
-    <fragment className='cartas'>
-        <Link to={"/home/" + e.id}>
-    <Card name={e.name} image={e.image.url} temperament={e.temperament} weight={e.weight.metric} id={e.id} />
-        </Link>
-    </fragment>
 
-                        )
-                    })
-                } */}
                 
             </div>
         </div>

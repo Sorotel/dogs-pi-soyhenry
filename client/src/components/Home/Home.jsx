@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import  Card  from '../Card/Card'
 import Paginado from '../Paginado/Paginado';
 import SearchBar from "../SearchBar/SearchBar";
-// import './SearchBar.css';
+import './home.css';
 
 export default function Home() {
     const dispatch = useDispatch()
@@ -70,11 +70,15 @@ export default function Home() {
         setCurrentPage(1);
         setOrden("Ordenado ${e.targuet.value}");
     };
-
+    
     return (
-        <div>
+        <div className='estructura'>
             <Link to='/create'>Crear Perro</Link>
+
             <h1>Pero que grande estan los Peshooos cheeeeee</h1>
+            
+            <SearchBar/>
+
 
             <button onClick={(e) => { handleClick(e) }}>
                 Volver a cargar los perros </button>
@@ -114,26 +118,29 @@ export default function Home() {
         paginado={paginado}
         />
 
-        <SearchBar/>
+
+    <div className='cartas'>
 
 {currentPerritos?.map((e) => {
-         return (
-    <fragment className='cartas'>
-        <Link to={"/dogs/" + e.id}>
-    <Card 
+    return (
+        <fragment >
+        <Link className="cartaLink" to={"/dogs/" + e.id}
+        >
+    <Card className="cartaDetalle"
     name={e.name}
     image={e.image}
     temperament={e.temperament}
     temperaments={e.temperaments?.map((temp)=>temp.name).join(", ")}
     weightMin={e.weightMin}
     weightMax={e.weightMax}
-     />
+    />
         </Link>
     </fragment>
 
-                        )
-                    })
-                }
+)
+})
+}
+</div>
 
 
                 

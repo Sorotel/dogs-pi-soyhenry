@@ -64,24 +64,6 @@ const dogParams = async (req, res) => {
     }
 };
 
-/*
-//              --> Obtener Temperamentos <--
-const tempGet = async (req, res) => {
-    const tempApi = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-    const temperaments = tempApi.data.map(e => e.temperament)
-    const temp = temperaments.toString().split(",")
-    temp.forEach(e => {
-        let i = e.trim()
-        Temperament.findOrCreate({
-            where: { name: i }
-        })
-    });
-    const allTemp = await TemperamentfindAll();
-    res.send(allTemp)
-};
-// En la linea 65 se me esta devolviendo una cadena como objeto y divido un string como un array, mas adelante en la linea 67 elimino los espacios en blanco de ambos lado del string. 
-
-*/
 
 //               --> Crear Perro <--
 const createDog = async (req, res) => {

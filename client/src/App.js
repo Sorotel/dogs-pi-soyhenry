@@ -14,10 +14,7 @@ function App() {
         <Route path= '/home' component={Home}/>
         <Route path= '/create' component={PerrosCreate}/>
         <Route exact path= '/dogs/:id' render={({match})=><Detail id={match.params.id}/>}/>
-      </Switch>
-      <h7>A eso le llamas Perro?</h7>
-    </div>
-    </BrowserRouter>
+      </Switch></div></BrowserRouter>
   );
 }
 

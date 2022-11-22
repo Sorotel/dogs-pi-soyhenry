@@ -1,0 +1,30 @@
+.estructura{
+    background-image: url('https://static.vecteezy.com/system/resources/previews/001/425/408/non_2x/tree-on-the-green-field-at-sunset-free-photo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    box-shadow: inset  0 0 100px 200000px rgba(91, 82, 31, 0.395);
+
+}
+
+.cartas{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    padding: 20px;
+    margin: 5px;
+   
+
+}
+
+.cartaLink{
+    text-decoration: none;
+    color: black;
+    
+}
+.cartaDetalle{
+    justify-content: center;
+}

@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap');
+
+
+
+.landing{
+    background-image: url('https://static.elcorreo.com/www/multimedia/202204/29/media/cortadas/razas-perros-kGnD--984x468@RC.jpg');
+     width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: table;
+    margin: 0;
+    top: 0;  
+    background-attachment: fixed;
+
+}
+.tituloLanding{
+  font-family: 'Teko';
+  letter-spacing: 3px;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  font-size: 25px;
+  margin: 5px;
+  color: rgb(249, 255, 62);
+  box-shadow:   0 0 15px  rgb(114, 105, 2);
+  border: 1px solid #ffe32ac4;
+  background: black;
+  position: absolute;
+  right: 1500px;
+  top: 50px;
+}
+.bottonLanding{
+    font-family: 'Titan One';
+  letter-spacing: 3px;
+  display: inline-block;
+  border-radius: 4px;
+  background: transparent;
+  color: rgb(0, 0, 0);
+  text-align: left;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  position: absolute;
+  right: 250px;
+  top: 270px;
+  box-shadow:   0 0 0px 0px rgb(114, 105, 2), inset  0 0 20px 3px rgb(192, 164, 38);
+  border: 2px solid #000000;
+}
+.bottonLanding span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.bottonLanding span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0s;
+}
+
+.bottonLanding:hover span {
+  padding-right: 25px;
+  color: rgb(0, 0, 255);
+}
+
+.bottonLanding:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.bottonLanding:hover{
+  box-shadow:   0 0 40px 3px rgba(143, 138, 7, 0.685),
+  inset  0 0 80px 3px rgb(234, 255, 0);
+  border: 2px solid #423a04;
+}

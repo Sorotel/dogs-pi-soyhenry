@@ -8,6 +8,7 @@ import Paginado from '../Paginado/Paginado';
 import SearchBar from "../SearchBar/SearchBar";
 import './home.css';
 
+
 export default function Home() {
     const dispatch = useDispatch()
     const allDogs = useSelector((state) => state.dogs);
@@ -41,7 +42,6 @@ export default function Home() {
     };
     
     function handleFilterTemperament(e){
-        // dispatch(filterPerritosByTemperament(e.target.value));
         e.preventDefault();
         if(e.target.value === 'all'){
         dispatch(getPerritos());
@@ -54,51 +54,65 @@ export default function Home() {
    
     function handleFilterCreated(e){
         e.preventDefault();
-        dispatch(filterCreated(e.target.value)); 
+        if(e.target.value === 'all'){
+            dispatch(getPerritos());
+            }else{
+        dispatch(filterCreated(e.target.value));
+        setCurrentPage(1)
+            }; 
     };
 
     function handleOrderByName(e){
-        e.preventDefault();
+        
+        if(e.target.value === 'all'){
+            dispatch(getPerritos());
+            }else{
         dispatch(orderByName(e.target.value));
         setCurrentPage(1);
-        setOrden("Ordenado ${e.targuet.value}");
+            };
     };
 
     function handleOrderByWeight(e){
+         if(e.target.value === 'all'){
+            dispatch(getPerritos());
+        }else{
         e.preventDefault();
         dispatch(orderByWeight(e.target.value));
         setCurrentPage(1);
-        setOrden("Ordenado ${e.targuet.value}");
+            };
     };
     
     return (
         <div className='estructura'>
-            <Link to='/create'>Crear Perro</Link>
+            <div className='introduccion'>
+                            <img className='lhome' src={'https://www.perrospedia.com/wp-content/uploads/2013/05/perro-hueso.gif'} alt='logopagina'/>
 
-            <h1>Pero que grande estan los Peshooos cheeeeee</h1>
+            <h1 className='titulo'>Sabueso perdio su hueso</h1>
             
             <SearchBar/>
 
 
-            <button onClick={(e) => { handleClick(e) }}>
+            <button className='create' onClick={(e) => { handleClick(e) }}>
                 Volver a cargar los perros </button>
 
+            <Link className='create' to='/create'>Crea tu raza de perro</Link>
+            </div>
 
-            <div>
-                <select onChange={(e) => handleOrderByName(e)}>
+            <div className='contenidoselects'>
+                <select className='listaselect' onChange={(e) => handleOrderByName(e)}>
                 <option defaultValue='all'>Orden Alfabetico</option>
-                    <option value='asc'>Ascendente</option>
-                    <option value='desc'>Descendente</option>
+                    <option value='asc'>A - Z</option>
+                    <option value='desc'>Z - A</option>
                 </select>
 
-                <select onChange={(e) => handleOrderByWeight(e)}>
-                <option defaultValue='all'>Orden Por Peso</option>
-                    <option value='asc'>Ascendente</option>
-                    <option value='desc'>Descendente</option>
+                <select className='listaselect' onChange={e=>handleOrderByWeight(e)}>
+                <option value="all">Orden Por Peso</option>
+                    <option value="asc">Ascendente</option>
+                    <option value="des">Descendente</option>
                 </select>
                
-                <select onChange={(e) =>handleFilterTemperament(e)} >
-                  <option defaultValue='all'>Temperamentos</option> 
+                <select className='listaselect' onChange={(e) =>handleFilterTemperament(e)} >
+                  <option defaultValue='All'>Temperamentos</option> 
                 { allTemperament.map((e,i)=>{
                     return (
                         <option key={i}>{e}</option>
@@ -107,23 +121,23 @@ export default function Home() {
                     }   
             </select>
     
-                <select onChange={(e) =>handleFilterCreated(e)}>
+                <select className='listaselect' onChange={(e) =>handleFilterCreated(e)}>
                     <option defaultValue='All'>Todos</option>
                     <option value='created'>Creados</option>
                     <option value='api'>Existente</option>
                 </select>
     <Paginado
-        perritosPerPage={perritosPerPage}
         allDogs={allDogs.length}
+        perritosPerPage={perritosPerPage}
         paginado={paginado}
         />
 
 
     <div className='cartas'>
 
-{currentPerritos?.map((e) => {
+{currentPerritos?.map((e,i) => {
     return (
-        <fragment >
+        <div key={i} >
         <Link className="cartaLink" to={"/dogs/" + e.id}
         >
     <Card className="cartaDetalle"
@@ -135,7 +149,7 @@ export default function Home() {
     weightMax={e.weightMax}
     />
         </Link>
-    </fragment>
+    </div>
 
 )
 })

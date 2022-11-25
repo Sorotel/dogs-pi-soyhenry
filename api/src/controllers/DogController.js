@@ -110,22 +110,12 @@ const createDog = async (req, res) => {
     }
 };
 
-const deleteDog = async(req, res)=>{
-    try{
-        let {id} = req.params;
-        await Dog.destroy({
-            where: {id}
-        })
-        res.status(201).send('Raza eliminada')
-    }catch{
-        res.status(400).send('El perro que buscas no existe en los regstros')
-    }
-    };
+
 
 module.exports = {
     dogTotalf,
     dogParams,
 
     createDog,
-    deleteDog,
+    
 };

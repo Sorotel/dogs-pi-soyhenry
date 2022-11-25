@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Teko:wght@600&family=Titan+One&display=swap');
+
+
+.createestructura{
+    background-image: url('https://cdn.create.vista.com/api/media/small/173483762/stock-photo-dogs-scientists-in-laboratory');
+    
+    background-size: cover;   
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed; 
+    box-shadow: inset  0 0 0px 2000px rgba(143, 128, 49, 0.395);
+    min-height: 100vh;
+    margin-top: -20px;    
+
+}
+
+.logohome{
+    height: 200px;
+    position: relative;
+    left: -20cm;
+    top: 50px
+}
+
+.titulocreation{
+    font-family: Teko;
+    letter-spacing: 2px;
+    position: relative;
+    left: -8cm;
+    top: -3cm;
+}
+
+.creation{
+    font-family: 'Teko';
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(255, 242, 0);
+    box-shadow:   0 0 10px 2px rgb(0, 0, 0),
+    inset  0 0 10px 2px rgb(0, 0, 0);
+    border: 2px solid rgb(255, 242, 0);;
+    padding: 15px;
+    letter-spacing: 5px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top:300px;
+    margin-bottom: 100px;
+    position: sticky;
+    left: -20cm;
+    top: 10cm;
+    transition: 0.3s;
+    background-color: rgba(0, 0, 0, 0.452);
+}
+    
+.creation:hover{
+    box-shadow: 0px 2px 0px 10px rgba(0, 0, 0, 0.65);
+    
+}
+
+.label{
+    font-family: 'Teko';
+    font-size: 16px;
+    padding: 4px;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    border: 3px solid #fee502;
+    box-shadow:   0 0 10px 2px rgba(0, 0, 0, 0.601),
+    inset  0 0 10px 2px rgb(93, 80, 5);
+    /* margin-bottom: 80px; */
+    transition: 0.3s;
+    background-color: rgba(145, 134, 33, 0.739);
+    position: relative;
+    left: -2cm;
+    top: 0cm;
+}
+
+.complete{
+    font-family: 'Teko';
+    font-size: 16px;
+    cursor: pointer;
+    left: 18cm;
+    color: rgb(255, 242, 0);
+    background-color:rgb(0, 0, 0); 
+    letter-spacing: 5px;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 2px solid rgb(136, 130, 10);;
+    padding: 5px;
+    width: 400px;
+    box-shadow:   0 0 10px 2px rgb(0, 0, 0),
+    inset  0 0 10px 2px rgb(0, 0, 0);
+    outline: none;
+    position: relative;
+    left: 0cm;
+    top: -1px;
+}
+
+
+
+.divTemp{
+    font-family: 'Teko';
+    font-size: 16px;
+    cursor: pointer;
+    left: 18cm;
+    color: rgb(255, 242, 0);
+    background-color:rgb(0, 0, 0); 
+    letter-spacing: 4px;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 2px solid rgb(136, 130, 10);;
+    padding: 2px;
+    width: 150px;
+    box-shadow:   0 0 10px 2px rgb(0, 0, 0),
+    inset  0 0 10px 2px rgb(0, 0, 0);
+    position: relative;
+    left: 37cm;
+    top: -12cm;
+}

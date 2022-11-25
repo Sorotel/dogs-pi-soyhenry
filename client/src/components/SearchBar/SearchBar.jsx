@@ -18,6 +18,7 @@ export default function SearchBar(){
     function handleSubmit(e){
         e.preventDefault();
         dispatch(getNamePerritos(name));
+        
     }
 
     return(
@@ -28,8 +29,7 @@ export default function SearchBar(){
             placeholder= "Buscar Raza..."
             onChange={(e) => handleInputChange(e)}
             value={name}
-            />
-            <button className="buttonSearch" type= 'submit' onClick={(e) => handleSubmit(e)}>Buscar</button>
+            /><button className="buttonSearch" type= 'submit' onClick={(e) => handleSubmit(e)}>Buscar</button>
         </div>
     )
 }

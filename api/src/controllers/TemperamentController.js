@@ -30,7 +30,7 @@ await tempArreglo.forEach(e => {
 const tempFinal = await Temperament.findAll()
 const tempSuperFinal = tempFinal.map(e=>e.name) 
 res.status(200).send(tempSuperFinal)
-console.log(tempSuperFinal,'AFSADDGQAG')
+
 };
 
 

@@ -30,23 +30,20 @@ function rootReducer(state = initialState, action,){
         case 'GET_TEMPERAMENT':
                 return{
                     ...state,
-                    temperament:  action.payload,// => temperamentosFiltered
-                    allDogsTemp: action.payload
+                    temperament:  action.payload, 
+                    allDogsTemp: action.payload,
                 }
         //3
         case 'FILTER_PERRITOS_BY_TEMPERAMENT':
             const stateAllDogs = state.allDogs;
       const filterDogs = action.payload === "all" ? stateAllDogs : stateAllDogs.filter((dog) => dog.temperament? dog.temperament.includes(action.payload) : dog.temperaments?.map((e) =>e.name)) ;
-      // const filterDogsDb = action.payload === "all" ? stateAllDogs : stateAllDogs.filter((dog) => dog.temperaments?.includes(action.payload)) ;
-         console.log(filterDogs, 'ASFJHAVKLUQA')
-         console.log(stateAllDogs, 'PROBANDO 123')
-         const probando = state.detail;
-                console.log(probando)
-        // console.log(stateAllDogs, 'PROBANDO 321|')
+      ;
+         
+    
         
             return{
                 ...state,
-                dogs:  filterDogs, //filterDogsDb,  //temperamentFiltered 
+                dogs:  filterDogs, 
                 
             }
         //4
@@ -61,7 +58,7 @@ function rootReducer(state = initialState, action,){
             }
         //5 
         case 'ORDER_BY_NAME':
-            const ordenPerritosName = state.dogs
+            const ordenPerritosName = state.allDogs
             let sortedArr = action.payload === 'asc' ? ordenPerritosName.sort(function (a, b) {
                 if(a.name > b.name){
                     return 1;
@@ -71,7 +68,7 @@ function rootReducer(state = initialState, action,){
                 }
                 return 0;
             }) :
-            ordenPerritosName.sort(function (a, b) {
+            state.allDogs.sort(function (a, b) {
                 if(a.name > b.name){
                     return -1;
                 }
@@ -80,25 +77,33 @@ function rootReducer(state = initialState, action,){
                 }
                 return 0;
             }) 
+            console.log(sortedArr,'asglFHAULFU')
             return{
                 ...state,
-                allDogs: sortedArr,
+                dogs: sortedArr,
             }
 
-            //5
+            //6
             case 'ORDER_BY_WEIGHT':
                 const ordenPerritosWeigth =
-                action.payload === "desc"
-                  ? state.dogs.sort((a, b) => {
-                      return b.weightMax - a.weightMax;
-                    })
-                  : state.dogs.sort((a, b) => {
-                      return a.weightMax - b.weightMax;
-                    });
-              return {
+                action.payload === 'asc'
+                ? state.allDogs.sort((a, b) => {
+                    return a.weightMin - b.weightMin;
+                })
+                : state.dogs.sort((a, b) => {
+                    return b.weightMin - a.weightMin;
+                });
+
+                console.log(ordenPerritosWeigth, 'ORDENADO?')
+                return {
                 ...state,
                 dogs: ordenPerritosWeigth,
               };
+            
+
+           
+           // weightMin  weightMax
+           
                 
 
                 

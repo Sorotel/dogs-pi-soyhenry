@@ -17,7 +17,7 @@ router.get('/dogs/:id', dogParams);
 router.get('/temperament', tempGet);
 router.post('/dogs',createDog);
 
-router.delete('/id', deleteDog);
+
 
 
 module.exports = router;

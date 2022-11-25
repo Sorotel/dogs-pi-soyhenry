@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Teko:wght@600&family=Titan+One&display=swap');
+
+
 .estructura{
     background-image: url('https://static.vecteezy.com/system/resources/previews/001/425/408/non_2x/tree-on-the-green-field-at-sunset-free-photo.jpg');
     background-size: cover;
@@ -7,17 +10,92 @@
 
 }
 
+.lhome{
+    height: 200px;
+    position: relative;
+    left: 25px;
+    top: 20px
+
+}
+.titulo{
+    font-family: Teko;
+    letter-spacing: 2px;
+    position: relative;
+    left: -3cm;
+    top: 0cm;
+}
+.introduccion{
+    
+        display: flex;
+        align-items: center;
+        margin: 0px;
+        gap: 10%;
+        
+    
+
+}
+
+.contenidoselects {
+    justify-content: space-evenly;
+    position: relative;
+    top: 15px;
+    margin: 1px;
+}
+
+.listaselect {
+    font-family: 'Teko';
+    font-size: 16px;
+    cursor: pointer;
+    left: 18cm;
+    color: rgb(255, 242, 0);
+    background-color:rgb(0, 0, 0); 
+    letter-spacing: 5px;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+    border: 2px solid rgb(136, 130, 10);;
+    padding: 5px;
+    width: 400px;
+    box-shadow:   0 0 10px 2px rgb(0, 0, 0),
+    inset  0 0 10px 2px rgb(0, 0, 0);
+    outline: none;
+    position: relative;
+    left: 0cm;
+    top: 1cm;
+   
+}
+
+.create{
+    font-family: 'Teko';
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(255, 242, 0);
+    box-shadow:   0 0 10px 2px rgb(0, 0, 0),
+    inset  0 0 10px 2px rgb(0, 0, 0);
+    border: 2px solid rgb(255, 242, 0);;
+    padding: 15px;
+    letter-spacing: 5px;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+    position: relative;
+    top: 20px;
+    transition: 0.3s;
+    background-color: rgba(0, 0, 0, 0.452);
+    position: relative;
+    left: -2cm;
+    top: 0cm;
+}
+.create:hover{
+    box-shadow: 0px 2px 0px 10px rgba(0, 0, 0, 0.65);
+    
+}
+
 .cartas{
     
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
     justify-content: center;
-    padding: 20px;
-    margin: 5px;
-   
-
 }
 
 .cartaLink{
@@ -25,6 +103,7 @@
     color: black;
     
 }
+
 .cartaDetalle{
     justify-content: center;
 }

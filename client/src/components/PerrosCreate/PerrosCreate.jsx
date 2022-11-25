@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link,useHistory } from 'react-router-dom'
 import {getPerritos,postPerrito, getTemperament,} from '../../actions';
 import { useDispatch,useSelector } from 'react-redux'
+import './perrocreate.css'
 
 function validate(input) {
     let errors ={};
@@ -26,6 +27,15 @@ function validate(input) {
 }
 return errors;
 };
+
+// function validateData(input){
+//     let error ={};
+//     if(input.name !== /([A-Z])\w+/){
+//         error.name = 'El nombre debe contener solo caracteres de la A a la Z'
+//     } else 
+// }
+
+
 
 export default function PerritoCreate(){
     const dispatch = useDispatch();
@@ -88,23 +98,6 @@ export default function PerritoCreate(){
     }
     }
 
-    // function handleSubmit(e){
-    //     e.preventDefault();
-    //     dispatch(postPerrito(input));
-    //     alert("PERRITO CREADO CON EXITO.")
-    //     setInput({
-    //         name: "",
-    //         weightMin: "",
-    //         weightMax: "",
-    //         heightMin: "",
-    //         heightMax: "",
-    //         lifeMin: "",
-    //         lifeMax: "",
-    //         image: "",
-    //         temperament: [],
-    //     })
-    //     history.push('/home');
-    // }
 
     function handleDelete(el){
         setInput({
@@ -120,13 +113,13 @@ export default function PerritoCreate(){
         
 
     return(
-        <div>
-            <Link to='/home'><button>Volver</button></Link>
-            <h1>Cree su Perrito "Dr. Frenkestein"</h1>
+        <div className='createestructura'>
+            <img className='logohome' src={'https://www.perrospedia.com/wp-content/uploads/2013/05/perro-hueso.gif'} alt='logopagina'/>
+            <h1 className='titulocreation'>Cree su Raza de perro, "Dr. Frenkestein"</h1>
                 <form onSubmit={(e)=>handleSubmit(e)}>
                     <div>
-                        <label>Nombre: </label>
-                        <input 
+                        <label className='label'>Nombre: </label>
+                        <input className='complete'
                         type='text'
                         value= {input.name}
                         name="name" 
@@ -135,11 +128,11 @@ export default function PerritoCreate(){
                         /> 
                         {errors.name &&(
                             <p className='error' >{errors.name}</p>
-                        )}
+                            )}
                     </div>
                     <div>
-                        <label>Peso Minimo: </label>
-                        <input 
+                        <label className='label'>Peso Minimo: </label>
+                        <input className='complete'
                         type='text'
                         value= {input.weightMin}
                         name="weightMin"
@@ -147,12 +140,12 @@ export default function PerritoCreate(){
                         onChange={(e)=>handleChange(e)} 
                         />
                          {errors.weightMin &&(
-                            <p className='error' >{errors.weightMin}</p>
-                        )}
+                             <p className='error' >{errors.weightMin}</p>
+                             )}
                     </div>
                     <div>
-                        <label>Peso Maximo: </label>
-                        <input 
+                        <label className='label'>Peso Maximo: </label>
+                        <input className='complete'
                         type='text'
                         value= {input.weightMax}
                         name="weightMax"
@@ -160,12 +153,12 @@ export default function PerritoCreate(){
                         onChange={(e)=>handleChange(e)} 
                         />
                          {errors.weightMax &&(
-                            <p className='error' >{errors.weightMax}</p>
-                        )}
+                             <p className='error' >{errors.weightMax}</p>
+                             )}
                     </div>
                     <div>
-                        <label>Altura Minima: </label>
-                        <input 
+                        <label className='label'>Altura Minima: </label>
+                        <input className='complete'
                         type='text'
                         value= {input.heightMin}
                         name="heightMin"
@@ -173,12 +166,12 @@ export default function PerritoCreate(){
                         onChange={(e)=>handleChange(e)} 
                         />
                          {errors.heightMin &&(
-                            <p className='error' >{errors.heightMin}</p>
-                        )}
+                             <p className='error' >{errors.heightMin}</p>
+                             )}
                     </div>
                     <div>
-                        <label>Altura Maxima: </label>
-                        <input 
+                        <label className='label'>Altura Maxima: </label>
+                        <input className='complete'
                         type='text'
                         value= {input.heightMax}
                         name="heightMax"
@@ -186,12 +179,12 @@ export default function PerritoCreate(){
                         onChange={(e)=>handleChange(e)} 
                         />
                          {errors.heightMax &&(
-                            <p className='error' >{errors.heightMax}</p>
-                        )}
+                             <p className='error' >{errors.heightMax}</p>
+                             )}
                     </div>
                     <div>
-                        <label>Edad minima: </label>
-                        <input 
+                        <label className='label'>Edad minima: </label>
+                        <input className='complete'
                         type='text'
                         value= {input.lifeMin}
                         name="lifeMin"
@@ -199,12 +192,12 @@ export default function PerritoCreate(){
                         onChange={(e)=>handleChange(e)} 
                         />
                          {errors.lifeMin &&(
-                            <p className='error' >{errors.lifeMin}</p>
-                        )}
+                             <p className='error' >{errors.lifeMin}</p>
+                             )}
                     </div>
                     <div>
-                        <label>Edad Maxima: </label>
-                        <input 
+                        <label className='label'>Edad Maxima: </label>
+                        <input className='complete'
                         type='text'
                         value= {input.lifeMax}
                         name="lifeMax"
@@ -212,12 +205,12 @@ export default function PerritoCreate(){
                         onChange={(e)=>handleChange(e)} 
                         />
                          {errors.lifeMax &&(
-                            <p className='error' >{errors.lifeMax}</p>
-                        )}
+                             <p className='error' >{errors.lifeMax}</p>
+                             )}
                     </div>
                     <div>
-                        <label>Imagen: </label>
-                        <input 
+                        <label className='label'>Imagen: </label>
+                        <input className='complete'
                         type='text'
                         value= {input.image}
                         name="image"
@@ -225,39 +218,45 @@ export default function PerritoCreate(){
                         onChange={(e)=>handleChange(e)} 
                         /> 
                          {errors.image &&(
-                            <p className='error' >{errors.image}</p>
-                        )}
+                             <p className='error' >{errors.image}</p>
+                             )}
                     </div>
 
                     <div>
-                        <label>Temperamentos: </label>
-                        <select onChange={(e) =>handleSelectionChange(e)} >
+                        <label className='label'>Temperamentos: </label>
+                        <select className='complete'
+                        onChange={(e) =>handleSelectionChange(e)} >
 
                   {/* {errors.temperament &&(
-                                  <p className='error' >{errors.temperament}</p>
+                      <p className='error' >{errors.temperament}</p>
                               )} */}
-                  <option value='all'>Temperamentos</option> 
+                  <option 
+                  value='all'>Temperamentos</option> 
                 { temperament.map((e,i)=>{
                     return (
-                        <option key={i}>{e}</option>
+                        <option 
+                        className='complete'
+                        key={i}>{e}</option>
                         )}
                         )
                     }   
             </select>
-            <ul><li>{input.temperament.map(el=> el+ " ,")}</li></ul>
+            {/* <ul><li >{input.temperament.map(el=> el+ " ,")}</li></ul> */}
 
-                    </div>
-
-                    <button type='submit' onClick={(e)=>handleSubmit(e)}>Crear Perrito</button>
-                
-                </form>
-
-                {input.temperament.map(el=>
-                    <div className='divTemp'>
+                {input.temperament.map((el,i)=>
+                    <div className='divTemp' key={i}>
                         <p>{el}</p>
                         <button className='botonX' onClick={()=>handleDelete(el)}>x</button>
                     </div>
                         )}
+                    </div>
+
+                    <Link  to='/home'><button className='creation'>Volver</button></Link>
+                   
+                    <button className='creation' type='submit' onClick={(e)=>handleSubmit(e)}>Crear Perrito</button>
+                
+                </form>
+
         </div>
     )
 

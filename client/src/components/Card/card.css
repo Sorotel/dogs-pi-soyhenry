@@ -1,7 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Teko:wght@600&family=Titan+One&display=swap');
 
 
-.emprolijado{
-    text-decoration: none;
-    color: black;
+.cartuli{
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    border: 10px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    /* box-shadow: 0px 0px 3px 3px rgb(255, 213, 0); */
+    transition: 0.3s;
+    transition: all 400ms ease;
+    height: 420px;
+    max-width: 350px;
+    background-color: rgba(246, 246, 49, 0.609);
+    height: 500px;
+    font-family: 'Teko';
+    color: rgb(0, 0, 0);
+    letter-spacing: 3px;
+}
+.cartuli:hover{
+    box-shadow: 0px 2px 0px 10px rgba(0, 0, 0, 0.65);
+    padding: 25px;
+    margin: 25px;
+}
+.imagen {
+    border-radius: 8px;
+    border:3px solid rgb(0, 0, 0);
+}
+.imagen:hover{
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.65);
+    
+}
+.information{
+    font-size:medium;
+}
+
+.descripcion{
+    font-family: Teko;
+    text-align: center;
+    font-size:15px;
+    
+   
 }

@@ -26,16 +26,7 @@ export function getNamePerritos(name){
     }
 }
 
-// export  function getDogsDb(){
-//     return async function(dispatch){
-//         var json = await axios.get("http://localhost:3001/dogs")
-           
-//         return dispatch({            
-//             type: 'GET_DOGS_DB',
-//             payload: json.data,
-//         })
 
-//     }} 
 
 export function getTemperament(){
     return async function(dispatch){
@@ -101,3 +92,4 @@ export function cleanDetail(){
         type: 'CLEAN_DETAIL'
     }
 }
+

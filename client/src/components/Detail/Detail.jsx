@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetails } from '../../actions';
+import { getDetails, cleanDetail } from '../../actions';
 import { useEffect } from 'react';
 
 import './detail.css'
@@ -16,7 +16,12 @@ export default function Detail(id){
 
     useEffect(()=> {
         dispatch(getDetails(id));
+    return ()=>{
+        dispatch(cleanDetail())
+    }
     },[dispatch]);
+
+
 
 
  return (

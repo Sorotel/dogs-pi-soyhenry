@@ -143,10 +143,6 @@ export default function Home() {
     <Card className="cartaDetalle"
     name={e.name}
     image={e.image}
-    temperament={e.temperament}
-    temperaments={e.temperaments?.map((temp)=>temp.name).join(", ")}
-    weightMin={e.weightMin}
-    weightMax={e.weightMax}
     />
         </Link>
     </div>
